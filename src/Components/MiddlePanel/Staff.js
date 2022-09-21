@@ -1,4 +1,4 @@
-function Staffs() {
+function Staff() {
   return (
     <>
       <div className="gird grid-row-14">
@@ -12,4 +12,4 @@ function Staffs() {
   );
 }
 
-export default Staffs;
+export default Staff;

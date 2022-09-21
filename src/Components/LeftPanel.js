@@ -1,8 +1,9 @@
-import "./App.css";
+import "../App.css";
 import RightPanel from "./RightPanel";
-import Curruculum from "./Curriculum";
-
+import { useState } from "react";
+import Main from "./Layout/Main";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faCalendar,
   faClipboardList,
@@ -11,12 +12,6 @@ import {
   faUserGraduate,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
-import Settings from "./Settings";
-import { useState } from "react";
-import Staffs from "./Staffs";
-import Students from "./Students";
-import Calendar from "./Calendar";
-import Examination from "./Examination";
 
 const staff = <FontAwesomeIcon icon={faUserGroup} />;
 const students = <FontAwesomeIcon icon={faUserGraduate} />;
@@ -27,11 +22,13 @@ const examination = <FontAwesomeIcon icon={faRectangleList} />;
 
 function LeftPanel() {
   const [page, setPage] = useState(3);
+  const [cat, setCat  ] = useState("");
+  const [sem, setSem] = useState();
 
   return (
     <>
-      <div className="grid  grid-cols-12 ">
-        <div className="col-span-2 rounded-3xl pt-10  border-r-2 bg-bgcolor">
+      <div className="grid grid-cols-8">
+        <div className="col-span-1 rounded-3xl pt-10  border-r-2 bg-bgcolor">
           <div className="grid grid-rows-5 text-gray-500 ">
             <div className="row-span-1"></div>
             <div className="row-span-3 mx-auto space-y-11">
@@ -91,20 +88,22 @@ function LeftPanel() {
             <div className="row-span-1"></div>
           </div>
         </div>
-        <div className="col-span-8 text-center pt-10 ">
-          {
-            {
-              0: <Staffs />,
-              1: <Students />,
-              2: <Calendar />,
-              3: <Curruculum />,
-              4: <Examination />,
-              5: <Settings />,
-            }[page]
-          }
+        <div className="col-span-6 text-center pt-3 ">
+          <Main
+            semester={sem}
+            setSemester={setSem}
+            category={cat}
+            setCategory={setCat}
+            page={page}
+          />
         </div>
-        <div className="col-span-2 rounded-3xl text-center border-l-2 z-10">
-          <RightPanel />
+        <div className="col-span-1 rounded-3xl text-center border-l-2 z-10">
+          <RightPanel
+            semester={sem}
+            setSemester={setSem}
+            category={cat}
+            setCategory={setCat}
+          />
         </div>
       </div>
     </>
